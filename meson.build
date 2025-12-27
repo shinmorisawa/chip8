@@ -1,4 +1,4 @@
-project('basic', 'c',
+project('chip8', 'c',
   version: 'pa0.1.0',
   default_options: ['warning_level=3', 'c_std=gnu2x', 'werror=true']
 )
@@ -15,7 +15,10 @@ include = include_directories(
   'include'
 )
 
-executable('basic', srcs,
+sdl3 = dependency('SDL3')
+
+executable('chip8', srcs,
   include_directories: include,
   install: true,
+  dependencies: [sdl3]
 )

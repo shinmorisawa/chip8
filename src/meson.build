@@ -1,3 +1,9 @@
 srcs = files(
-  'main.c'
+  'main.c',
+  'loop.c',
+  'init.c',
+  'glad.c',
+  'input.c',
+  'render.c',
+  'chip.c'
 )
