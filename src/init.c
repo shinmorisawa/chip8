@@ -19,8 +19,6 @@ void init() {
         return;
     }
 
-    SDL_GL_SetAttribute(SDL_GL_FRAMEBUFFER_SRGB_CAPABLE, 1);
-
     window = SDL_CreateWindow("chip8", 640, 320, SDL_WINDOW_OPENGL);
     if (!window) {
         fprintf(stderr, "[init.c init] window init failed\n");
@@ -29,9 +27,8 @@ void init() {
 
     ctx = SDL_GL_CreateContext(window);
     gladLoadGL();
-    glEnable(GL_FRAMEBUFFER_SRGB);
 
-    load_rom("roms/1-chip8-logo.ch8");
+    load_rom("roms/2-ibm-logo.ch8");
 
     loop();
 

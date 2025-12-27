@@ -35,8 +35,10 @@ static const char* fragment_src =
 "uniform sampler2D screen;\n"
 "void main() {\n"
 "   vec2 uv = vec2(v_uv.x, 1.0 - v_uv.y);\n"
+"   vec4 onColor = vec4(1.0, 0.5, 1.0, 1.0);\n"
+"   vec4 offColor = vec4(0.0, 0.0, 0.0, 1.0);\n"
 "   float p = texture(screen, uv).r;\n"
-"   color = vec4(p, p, p, 1.0);\n"
+"   color = mix(offColor, onColor, p);\n"
 "}\n";
 
 void init_render() {

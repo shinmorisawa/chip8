@@ -1,3 +1,4 @@
+#include <SDL3/SDL_timer.h>
 #include <stdio.h>
 #include "chip.h"
 
@@ -5,12 +6,26 @@ Chip8 chip8;
 
 extern bool running;
 
+static u64 last_timer_tick = 0;
+
 void chip8_fb_test() {
     for (int i = 0; i < 32; i++) {
         for (int j = 0; j < 64; j++) {
             int k = i * 64 + j;
             chip8.framebuffer[k] = ((i + j) & 1) ? 255 : 0;
         }
+    }
+}
+
+void timer_update() {
+    u64 now = SDL_GetTicks();
+    if (now - last_timer_tick >= 1000 / 60) {
+        if (chip8.d_timer > 0) chip8.d_timer--;
+        if (chip8.s_timer > 0) {
+            chip8.s_timer--;
+            /* TODO: implement beep */
+        }
+        last_timer_tick = now;
     }
 }
 
@@ -41,6 +56,8 @@ void load_rom(const char* file_name) {
 void chip8_step() {
     u16 opcode = chip8.memory[chip8.PC] << 8 | chip8.memory[chip8.PC + 1];
     chip8.PC += 2;
+
+    fprintf(stdout, "[chip.c chip8_step] opcode: %04X, PC=%04X\n", opcode, chip8.PC);
 
     switch (opcode & 0xF000) {
         case 0x0000:
