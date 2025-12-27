@@ -16,3 +16,5 @@ typedef struct Chip8 {
 } Chip8;
 
 void chip8_fb_test();
+void load_rom(const char* rom);
+void chip8_step();

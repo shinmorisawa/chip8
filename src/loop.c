@@ -24,6 +24,10 @@ void loop() {
         dt = (double)(now - last) / SDL_GetPerformanceCounter();
         last = now;
 
+        for (int i = 0; i < 10; i++) {
+            chip8_step();
+        }
+
         Input i = poll_input();
 
         render();

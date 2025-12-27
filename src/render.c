@@ -34,7 +34,8 @@ static const char* fragment_src =
 "out vec4 color;\n"
 "uniform sampler2D screen;\n"
 "void main() {\n"
-"   float p = texture(screen, v_uv).r;\n"
+"   vec2 uv = vec2(v_uv.x, 1.0 - v_uv.y);\n"
+"   float p = texture(screen, uv).r;\n"
 "   color = vec4(p, p, p, 1.0);\n"
 "}\n";
 

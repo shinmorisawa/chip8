@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 #include "init.h"
+#include "chip.h"
 #include "loop.h"
 #include "glad.h"
 
@@ -29,6 +30,8 @@ void init() {
     ctx = SDL_GL_CreateContext(window);
     gladLoadGL();
     glEnable(GL_FRAMEBUFFER_SRGB);
+
+    load_rom("roms/1-chip8-logo.ch8");
 
     loop();
 
